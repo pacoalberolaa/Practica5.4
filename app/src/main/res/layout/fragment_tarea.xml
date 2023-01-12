@@ -9,6 +9,17 @@
 
 
     <TextView
+        android:id="@+id/tvHoras"
+        android:layout_width="146dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="268dp"
+        android:text="@string/horas_trabajadas"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/tvETarea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -137,5 +148,15 @@
         android:src="@drawable/ic_abierto"
         app:layout_constraintBottom_toTopOf="@+id/rgEstado"
         app:layout_constraintStart_toEndOf="@+id/tvETarea" />
+
+    <SeekBar
+        android:id="@+id/sbHoras"
+        android:layout_width="228dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="23dp"
+        android:max="30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgEstado" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
