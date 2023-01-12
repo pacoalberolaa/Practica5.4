@@ -29,4 +29,7 @@
 
     <string name="mensaje_categoria">Has seleccionado  %1$s como categoría</string>
     <string name="pagado">Pagado</string>
+    <string name="abierto">Abierto</string>
+    <string name="en_curso">En curso</string>
+    <string name="cerrada">Cerrada</string>
 </resources>

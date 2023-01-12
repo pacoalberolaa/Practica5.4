@@ -9,6 +9,17 @@
 
 
     <TextView
+        android:id="@+id/tvETarea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="176dp"
+        android:text="Estado de la Tarea"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/tvPrioridad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,4 +96,46 @@
         android:text="@string/pagado"
         app:layout_constraintStart_toEndOf="@+id/ivPagado"
         app:layout_constraintTop_toBottomOf="@+id/spPrioridad" />
+
+    <RadioGroup
+        android:id="@+id/rgEstado"
+        android:layout_width="305dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginEnd="80dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spPrioridad">
+
+        <RadioButton
+            android:id="@+id/rbAbierta"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/abierto" />
+
+        <RadioButton
+            android:id="@+id/rbEnCurso"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/en_curso" />
+
+        <RadioButton
+            android:id="@+id/rbCerrada"
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cerrada" />
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/ivEstado"
+        android:layout_width="45dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/ic_abierto"
+        app:layout_constraintBottom_toTopOf="@+id/rgEstado"
+        app:layout_constraintStart_toEndOf="@+id/tvETarea" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
