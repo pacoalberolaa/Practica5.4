@@ -33,4 +33,7 @@
     <string name="en_curso">En curso</string>
     <string name="cerrada">Cerrada</string>
     <string name="horas_trabajadas">Llevo %1$d horas trabajadas</string>
+    <string name="valoracion_del_cliente">Valoracion del Cliente</string>
+    <string name="tecnico">Tecnico</string>
+    <string name="descripcion1">Descripcion</string>
 </resources>
