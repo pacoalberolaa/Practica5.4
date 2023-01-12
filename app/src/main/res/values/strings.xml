@@ -28,4 +28,5 @@
     </string-array>
 
     <string name="mensaje_categoria">Has seleccionado  %1$s como categoría</string>
+    <string name="pagado">Pagado</string>
 </resources>
