@@ -1,5 +1,10 @@
 package com.example.practica5.model
 
+import android.os.Parcelable
+import androidx.versionedparcelable.ParcelField
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Tarea(
     var id:Long?=null,//id único
     val categoria:Int,
@@ -10,7 +15,7 @@ data class Tarea(
     val valoracionCliente:Float,
     val tecnico:String,
     val descripcion:String
-) {
+):Parcelable {
     constructor( categoria:Int,
                  prioridad:Int,
                  pagado:Boolean,

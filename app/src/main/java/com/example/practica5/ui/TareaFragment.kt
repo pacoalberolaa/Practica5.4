@@ -63,17 +63,22 @@ class TareaFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // asignamos el adaptador al spinner
             binding.spCategoria.adapter = adapter
+            binding.spCategoria.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    //recuperamos el valor
+                    val valor=binding.spCategoria.getItemAtPosition(2)
+                    //creamos el mensaje desde el recurso string parametrizado
+                    val mensaje=getString(R.string.mensaje_categoria,valor)
+                    //mostramos el mensaje donde "binding.root" es el ContrainLayout principal
+                    Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show()
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                }
+            }
         }
-
-        //recuperamos el valor
-        val valor=binding.spCategoria.getItemAtPosition(2)
-        //creamos el mensaje desde el recurso string parametrizado
-        val mensaje=getString(R.string.mensaje_categoria,valor)
-        //mostramos el mensaje donde "binding.root" es el ContrainLayout principal
-        Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show()
-
-
     }
 
     private fun iniciaSpPrioridad(){
@@ -160,4 +165,6 @@ class TareaFragment : Fragment() {
         binding.tvHoras.text=getString(R.string.horas_trabajadas,0)
 
     }
+
+
 }
