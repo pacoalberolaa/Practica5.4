@@ -28,7 +28,7 @@ class ListaFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentListaBinding.inflate(inflater, container, false)
         return binding.root
@@ -38,26 +38,19 @@ class ListaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.buttonFirst.setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
-        viewModel.tareasLiveData.observe(viewLifecycleOwner, Observer<List<Tarea>> { lista ->
+        viewModel.tareasLiveData.observe(viewLifecycleOwner) { lista ->
             actualizaLista(lista)
-        })
-
-        binding.fabNuevo.setOnClickListener{
-            findNavController().navigate(R.id.action_editar)
         }
 
         binding.fabNuevo.setOnClickListener {
             //creamos acción enviamos argumento nulo porque queremos crear NuevaTarea
             val action=ListaFragmentDirections.actionEditar(null)
             findNavController().navigate(action)
-
         }
-//para prueba, editamos una tarea aleatoria
+
+        //para prueba, editamos una tarea aleatoria
         binding.btPruebaEdicion.setOnClickListener{
-//cogemos la lista actual de Tareas que tenemos en el ViewModel. No es lo más correcto
+            //cogemos la lista actual de Tareas que tenemos en el ViewModel. No es lo más correcto
             val lista= viewModel.tareasLiveData.value
             //buscamos una tarea aleatoriamente
             val tarea=lista?.get((0..lista.lastIndex).random())
@@ -77,6 +70,6 @@ class ListaFragment : Fragment() {
         lista?.forEach(){
             listaString="$listaString ${it.id}-${it.tecnico}-${it.descripcion}-${if(it.pagado) "pagado" else "no pagado"}\n"
         }
-        binding.tvLista.setText(listaString)
+        binding.tvLista.text = listaString
     }
 }
