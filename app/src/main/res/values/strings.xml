@@ -37,4 +37,5 @@
     <string name="tecnico">Tecnico</string>
     <string name="descripcion1">Descripcion</string>
     <string name="prueba_de_edicion">Prueba de Edicion</string>
+    <string name="sin_pagar">Sin Pagar</string>
 </resources>

@@ -58,6 +58,8 @@ class ListaFragment : Fragment() {
             val action=ListaFragmentDirections.actionEditar(tarea)
             findNavController().navigate(action)
         }
+
+        iniciaFiltros()
     }
 
     override fun onDestroyView() {
@@ -71,5 +73,12 @@ class ListaFragment : Fragment() {
             listaString="$listaString ${it.id}-${it.tecnico}-${it.descripcion}-${if(it.pagado) "pagado" else "no pagado"}\n"
         }
         binding.tvLista.text = listaString
+    }
+
+    private fun iniciaFiltros(){
+        binding.swSinPagar.setOnCheckedChangeListener( ) { _,isChecked->
+            //actualiza el LiveData SoloSinPagarLiveData que a su vez modifica tareasLiveData 
+            //mediante el Transformation
+            viewModel.setSoloSinPagar(isChecked)}
     }
 }
