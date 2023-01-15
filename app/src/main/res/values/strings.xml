@@ -38,4 +38,8 @@
     <string name="descripcion1">Descripcion</string>
     <string name="prueba_de_edicion">Prueba de Edicion</string>
     <string name="sin_pagar">Sin Pagar</string>
+    <string name="abierta">Abierta</string>
+    <string name="en_curso1">En curso</string>
+    <string name="cerrada1">Cerrada</string>
+    <string name="todas">Todas</string>
 </resources>

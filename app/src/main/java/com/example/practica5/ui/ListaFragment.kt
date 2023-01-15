@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.practica5.R
@@ -44,18 +45,18 @@ class ListaFragment : Fragment() {
 
         binding.fabNuevo.setOnClickListener {
             //creamos acción enviamos argumento nulo porque queremos crear NuevaTarea
-            val action=ListaFragmentDirections.actionEditar(null)
+            val action = ListaFragmentDirections.actionEditar(null)
             findNavController().navigate(action)
         }
 
         //para prueba, editamos una tarea aleatoria
-        binding.btPruebaEdicion.setOnClickListener{
+        binding.btPruebaEdicion.setOnClickListener {
             //cogemos la lista actual de Tareas que tenemos en el ViewModel. No es lo más correcto
-            val lista= viewModel.tareasLiveData.value
+            val lista = viewModel.tareasLiveData.value
             //buscamos una tarea aleatoriamente
-            val tarea=lista?.get((0..lista.lastIndex).random())
+            val tarea = lista?.get((0..lista.lastIndex).random())
             //se la enviamos a TareaFragment para su edición
-            val action=ListaFragmentDirections.actionEditar(tarea)
+            val action = ListaFragmentDirections.actionEditar(tarea)
             findNavController().navigate(action)
         }
 
@@ -68,17 +69,27 @@ class ListaFragment : Fragment() {
     }
 
     private fun actualizaLista(lista: List<Tarea>?) {
-        var listaString=""
-        lista?.forEach(){
-            listaString="$listaString ${it.id}-${it.tecnico}-${it.descripcion}-${if(it.pagado) "pagado" else "no pagado"}\n"
+        var listaString = ""
+        lista?.forEach() {
+            listaString =
+                "$listaString ${it.id}-${it.tecnico}-${it.descripcion}-${if (it.pagado) "pagado" else "no pagado"}\n"
         }
         binding.tvLista.text = listaString
     }
 
-    private fun iniciaFiltros(){
-        binding.swSinPagar.setOnCheckedChangeListener( ) { _,isChecked->
+    private fun iniciaFiltros() {
+        binding.swSinPagar.setOnCheckedChangeListener() { _, isChecked ->
             //actualiza el LiveData SoloSinPagarLiveData que a su vez modifica tareasLiveData 
             //mediante el Transformation
-            viewModel.setSoloSinPagar(isChecked)}
+            viewModel.setSoloSinPagar(isChecked) }
+
+        binding.rgTareas.setOnCheckedChangeListener { _, i ->
+            when (resources.getResourceEntryName(i)) {
+                "rbTAbierta" -> viewModel.setPorEstado(0)
+                "rbTEncurso" -> viewModel.setPorEstado(1)
+                "rbTCerrada" -> viewModel.setPorEstado(2)
+                "rb4TTodas" -> viewModel.setPorEstado(3)
+            }
+        }
     }
 }
