@@ -136,7 +136,6 @@ class ListaFragment : Fragment() {
                     borrarTarea(tarea)
                 }
             }
-
         }
     }
 
