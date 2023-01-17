@@ -11,7 +11,7 @@ import com.example.practica5.model.Tarea
 class TareasAdapter:
     RecyclerView.Adapter<TareasAdapter.TareaViewHolder>(){
     lateinit var listaTareas: List<Tarea>
-    private var onTareaClickListener:OnTareaClickListener?=null
+    var onTareaClickListener:OnTareaClickListener?=null
 
 
     fun setLista(lista:List<Tarea>){

@@ -43,6 +43,7 @@ class ListaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         iniciaRecyclerView()
         iniciaFiltros()
+        iniciaCRUD()
 
         viewModel.tareasLiveData.observe(viewLifecycleOwner, Observer<List<Tarea>> { lista ->
             //actualizaLista(lista)
@@ -110,6 +111,27 @@ class ListaFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             //le asignamos el adaptador
             adapter = tareasAdapter
+        }
+    }
+    private fun iniciaCRUD(){
+        binding.fabNuevo.setOnClickListener{
+            val action=ListaFragmentDirections.actionEditar(null)
+            findNavController().navigate(action)
+        }
+
+        tareasAdapter.onTareaClickListener = object : TareasAdapter.OnTareaClickListener {
+            //**************Editar  Tarea*************
+            override fun onTareaClick(tarea: Tarea?) {
+                //creamos acción enviamos argumento la tarea para editarla
+                val action = ListaFragmentDirections.actionEditar(tarea)
+                findNavController().navigate(action)
+            }
+            //***********Borrar Tarea************
+            override fun onTareaBorrarClick(tarea: Tarea?) {
+                //borramos directamente la tarea
+                viewModel.delTarea(tarea!!)
+            }
+
         }
     }
 }
