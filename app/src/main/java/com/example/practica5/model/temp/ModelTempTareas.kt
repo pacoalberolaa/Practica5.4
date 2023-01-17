@@ -5,6 +5,8 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.practica5.model.Tarea
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 object ModelTempTareas {
@@ -17,7 +19,7 @@ object ModelTempTareas {
 
     operator fun invoke(context: Context){
         this.application= context.applicationContext as Application
-        iniciaPruebaTareas()
+        GlobalScope.launch { iniciaPruebaTareas() }
     }
 
     fun getAllTareas(): LiveData<ArrayList<Tarea>> {
@@ -34,9 +36,9 @@ object ModelTempTareas {
             tareas.set(pos, tarea)
         }
         //actualiza el LiveData
-        tareasLiveData.value = tareas
+        tareasLiveData.postValue(tareas)
     }
-    fun iniciaPruebaTareas() {
+    suspend fun iniciaPruebaTareas() {
         val tecnicos = listOf(
             "Pepe Gotero",
             "Sacarino Pómez",
@@ -60,7 +62,7 @@ object ModelTempTareas {
             tareas.add(tarea)
         }
         //actualizamos el LiveData
-        tareasLiveData.value = tareas
+        tareasLiveData.postValue(tareas)
     }
 
     suspend fun delTarea(tarea: Tarea) {
