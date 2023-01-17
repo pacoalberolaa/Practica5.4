@@ -96,10 +96,10 @@ class ListaFragment : Fragment() {
 
         binding.rgTareas.setOnCheckedChangeListener { _, i ->
             when (resources.getResourceEntryName(i)) {
-                "rbTAbierta" -> viewModel.setPorEstado(0)
-                "rbTEncurso" -> viewModel.setPorEstado(1)
-                "rbTCerrada" -> viewModel.setPorEstado(2)
-                "rb4TTodas" -> viewModel.setPorEstado(3)
+                "rbTAbierta" -> viewModel.setEstado(0)
+                "rbTEncurso" -> viewModel.setEstado(1)
+                "rbTCerrada" -> viewModel.setEstado(2)
+                "rbTTodas" -> viewModel.setEstado(3)
             }
         }
     }
