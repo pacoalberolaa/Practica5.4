@@ -63,9 +63,10 @@ object ModelTempTareas {
         tareasLiveData.value = tareas
     }
 
-    fun delTarea(tarea: Tarea) {
+    suspend fun delTarea(tarea: Tarea) {
+        //Thread.sleep(10000)
         tareas.remove(tarea)
-        tareasLiveData.value = tareas
+        tareasLiveData.postValue(tareas)
     }
 
     fun getTareasFiltroSinPagar(soloSinPagar:Boolean): LiveData<ArrayList<Tarea>> {

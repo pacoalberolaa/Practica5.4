@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.practica5.model.Tarea
 import com.example.practica5.repository.Repository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AppViewModel(application: Application) : AndroidViewModel(application) {
     private  val repositorio: Repository
@@ -46,7 +48,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
     fun addTarea(tarea: Tarea) = repositorio.addTarea(tarea)
-    fun delTarea(tarea: Tarea) = repositorio.delTarea(tarea)
+    fun delTarea(tarea: Tarea) = viewModelScope.launch(Dispatchers.IO){
+        Repository.delTarea(tarea)}
 
     //fun setSoloSinPagar(soloSinPagar:Boolean){soloSinPagarLiveData.value=soloSinPagar}
 
