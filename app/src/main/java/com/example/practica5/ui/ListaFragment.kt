@@ -9,7 +9,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practica5.R
+import com.example.practica5.adapter.TareasAdapter
 import com.example.practica5.databinding.FragmentListaBinding
 import com.example.practica5.model.Tarea
 import com.example.practica5.viewModel.AppViewModel
@@ -21,6 +23,7 @@ class ListaFragment : Fragment() {
 
     private var _binding: FragmentListaBinding? = null
     private val viewModel: AppViewModel by activityViewModels()
+    lateinit var  tareasAdapter:TareasAdapter
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -38,10 +41,14 @@ class ListaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        iniciaRecyclerView()
+        iniciaFiltros()
 
-        viewModel.tareasLiveData.observe(viewLifecycleOwner) { lista ->
-            actualizaLista(lista)
-        }
+        viewModel.tareasLiveData.observe(viewLifecycleOwner, Observer<List<Tarea>> { lista ->
+            //actualizaLista(lista)
+            tareasAdapter.setLista(lista)
+
+        })
 
         binding.fabNuevo.setOnClickListener {
             //creamos acción enviamos argumento nulo porque queremos crear NuevaTarea
@@ -91,6 +98,18 @@ class ListaFragment : Fragment() {
                 "rbTCerrada" -> viewModel.setPorEstado(2)
                 "rb4TTodas" -> viewModel.setPorEstado(3)
             }
+        }
+    }
+
+    private fun iniciaRecyclerView() {
+        //creamos el adaptador
+        tareasAdapter = TareasAdapter()
+
+        with(binding.rvTareas) {
+            //Creamos el layoutManager
+            layoutManager = LinearLayoutManager(activity)
+            //le asignamos el adaptador
+            adapter = tareasAdapter
         }
     }
 }
