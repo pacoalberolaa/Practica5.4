@@ -50,7 +50,7 @@ class ListaFragment : Fragment() {
         }
 
         //para prueba, editamos una tarea aleatoria
-        binding.btPruebaEdicion.setOnClickListener {
+        /**binding.btPruebaEdicion.setOnClickListener {
             //cogemos la lista actual de Tareas que tenemos en el ViewModel. No es lo más correcto
             val lista = viewModel.tareasLiveData.value
             //buscamos una tarea aleatoriamente
@@ -59,6 +59,7 @@ class ListaFragment : Fragment() {
             val action = ListaFragmentDirections.actionEditar(tarea)
             findNavController().navigate(action)
         }
+        **/
 
         iniciaFiltros()
     }
@@ -74,7 +75,7 @@ class ListaFragment : Fragment() {
             listaString =
                 "$listaString ${it.id}-${it.tecnico}-${it.descripcion}-${if (it.pagado) "pagado" else "no pagado"}\n"
         }
-        binding.tvLista.text = listaString
+        //binding.tvLista.text = listaString
     }
 
     private fun iniciaFiltros() {
